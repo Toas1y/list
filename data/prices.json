@@ -1,20 +1,65 @@
 [
-  { "id": 1, "brand": "Soulwood (Crystal)", "category": "Louvers", "name": "Charcoal Louvers", "specs": "Regular", "size": "5 inch x 9 ft", "dp": 800, "sp": 850 },
-  { "id": 2, "brand": "Soulwood (Crystal)", "category": "Louvers", "name": "Velvet Series", "specs": "Soulwood", "size": "NA", "dp": 800, "sp": 850 },
-  { "id": 3, "brand": "Soulwood (Crystal)", "category": "WPC", "name": "WPC Interior Louver", "specs": "Standard", "size": "8x4 ft", "dp": 2200, "sp": 2400 },
-  { "id": 4, "brand": "Lamiq", "category": "Laminate", "name": "Elinor", "specs": "No Star", "size": "8x4 ft", "dp": 3700, "sp": 3800 },
-  { "id": 5, "brand": "Lamiq", "category": "Laminate", "name": "Mattino", "specs": "One Star", "size": "8x4 ft", "dp": 5000, "sp": 5200 },
-  { "id": 6, "brand": "Glorio", "category": "Charcoal Panel", "name": "Plastic Wall Panel GL", "specs": "Basic", "size": "8x4 ft (5mm)", "dp": 5000, "sp": 6800 },
-  { "id": 7, "brand": "Glorio", "category": "Charcoal Panel", "name": "Plastic Wall Panel GL", "specs": "Premium", "size": "8x4 ft (5mm)", "dp": 6200, "sp": 7000 },
-  { "id": 8, "brand": "Glorio", "category": "Acrylic", "name": "7000 Series", "specs": "2mm", "size": "8x4 ft", "dp": 5400, "sp": 6000 },
-  { "id": 9, "brand": "Glorio", "category": "Acrylic", "name": "7303 Series", "specs": "1mm", "size": "8x4 ft", "dp": 3150, "sp": 3500 },
-  { "id": 10, "brand": "Glorio", "category": "Charcoal Panel", "name": "Mirraco Panels", "specs": "3800 Series", "size": "8x4 ft", "dp": 5350, "sp": 5850 },
-  { "id": 11, "brand": "Vivre", "category": "Louvers", "name": "Regular Louvers", "specs": "Standard", "size": "8 ft", "dp": 800, "sp": 850 },
-  { "id": 12, "brand": "Vivre", "category": "Louvers", "name": "Apex Louvers", "specs": "Premium", "size": "9.5 ft", "dp": 1000, "sp": 1050 },
-  { "id": 13, "brand": "Vivre", "category": "Acrylic", "name": "Solid Colours", "specs": "7000 Series", "size": "8x4 ft", "dp": 4100, "sp": 4200 },
-  { "id": 14, "brand": "Euro Pratik", "category": "Lucento", "name": "Lucento (6mm)", "specs": "10100 Series", "size": "8x4 ft", "dp": 11000, "sp": 11150 },
-  { "id": 15, "brand": "Euro Pratik", "category": "Lucento", "name": "Lucento (6mm)", "specs": "10200 Series", "size": "8x4 ft", "dp": 15500, "sp": 15700 },
-  { "id": 16, "brand": "Euro Pratik", "category": "Lucento", "name": "Lucento (6/8mm)", "specs": "10300 Series", "size": "8x4 ft", "dp": 21000, "sp": 21530 },
-  { "id": 17, "brand": "Euro Pratik", "category": "Sapphire", "name": "Sapphire (2mm)", "specs": "14000 Series", "size": "8x4 ft", "dp": 5400, "sp": 5500 },
-  { "id": 18, "brand": "Euro Pratik", "category": "Decolite", "name": "Decolite Panels", "specs": "7400/7100 Series", "size": "2400x600mm", "dp": 3000, "sp": 3500 }
+  {
+    "id": 1,
+    "brand": "Soulwood (Crystal)",
+    "type": "Louvers",
+    "product": "Charcoal Louvers",
+    "variant": "5 inch x 9 ft",
+    "dp": 800,
+    "sp": 850
+  },
+  {
+    "id": 2,
+    "brand": "Soulwood (Crystal)",
+    "type": "Louvers",
+    "product": "Velvet Series",
+    "variant": "5 inch x 9 ft",
+    "dp": 800,
+    "sp": 850
+  },
+  {
+    "id": 3,
+    "brand": "Soulwood (Crystal)",
+    "type": "Louvers",
+    "product": "Charcoal Louvers XL",
+    "variant": "1 Ft Width",
+    "dp": 1700,
+    "sp": 1800
+  },
+  {
+    "id": 4,
+    "brand": "Soulwood (Crystal)",
+    "type": "Louvers",
+    "product": "WPC L Corner",
+    "variant": "Standard",
+    "dp": 250,
+    "sp": 300
+  },
+  {
+    "id": 5,
+    "brand": "Soulwood (Crystal)",
+    "type": "PU Stone",
+    "product": "PU Stone",
+    "variant": "4 ft x 2 ft",
+    "dp": 1100,
+    "sp": 1200
+  },
+  {
+    "id": 6,
+    "brand": "Soulwood (Crystal)",
+    "type": "WPC",
+    "product": "WPC Exterior Panel",
+    "variant": "Standard",
+    "dp": 2200,
+    "sp": 2400
+  },
+  {
+    "id": 7,
+    "brand": "Soulwood (Crystal)",
+    "type": "WPC",
+    "product": "WPC Interior Louver",
+    "variant": "Standard",
+    "dp": 700,
+    "sp": 800
+  }
 ]
