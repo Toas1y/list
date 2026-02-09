@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Price List Pro</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root { --bg: #000000; --card: #111111; --text: #ffffff; --blue: #2563eb; --green: #4ade80; --border: #333; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Header & Navigation */
+        header { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; font-weight: 800; }
+        .nav-btn { text-decoration: none; font-size: 1.2rem; background: #222; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid var(--blue); }
+
+        /* Search Controls */
+        .controls { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 15px; }
+        label { font-size: 0.8rem; color: #888; margin-bottom: -10px; margin-left: 5px; }
+        input, select { background: var(--card); color: white; border: 1px solid var(--border); padding: 14px; font-size: 16px; border-radius: 10px; width: 100%; outline: none; -webkit-appearance: none; }
+        input:focus, select:focus { border-color: var(--blue); }
+
+        /* Result Card */
+        .result-card { background: #1a1a1a; width: 100%; max-width: 600px; margin-top: 30px; border-radius: 16px; padding: 20px; border: 1px solid var(--border); display: none; box-sizing: border-box; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .brand-tag { background: var(--blue); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+        .product-title { font-size: 1.4rem; margin: 12px 0 5px 0; font-weight: 700; }
+        .product-specs { color: #888; font-size: 0.9rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: flex-end; }
+        .price-box small { display: block; font-size: 0.75rem; color: #666; margin-bottom: 4px; }
+        .sp { font-size: 2rem; font-weight: bold; color: var(--green); }
+        .dp { font-size: 1.2rem; color: #888; font-family: monospace; }
+        
+        .profit-badge { background: rgba(37,99,235,0.15); color: #60a5fa; padding: 10px; border-radius: 8px; text-align: center; margin-top: 20px; font-weight: 600; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PRICE LIST</h1>
+        <a href="https://toas1y.github.io/size-calc/" class="nav-btn" title="Open Calculator">🧮</a>
+    </header>
+
+    <div class="controls">
+        <label>Search Brand</label>
+        <input list="brandList" id="brandInput" placeholder="Type to search...">
+        <datalist id="brandList"></datalist>
+
+        <label>Category</label>
+        <select id="categoryInput" disabled><option>-- Select Brand First --</option></select>
+
+        <label>Model / Size</label>
+        <select id="modelInput" disabled><option>-- Select Category First --</option></select>
+    </div>
+
+    <div id="resultCard" class="result-card">
+        <div><span class="brand-tag" id="resBrand">BRAND</span></div>
+        <div class="product-title" id="resName">Name</div>
+        <div class="product-specs" id="resSpecs">Specs</div>
+        
+        <div class="price-row">
+            <div class="price-box">
+                <small>DEALER PRICE (DP)</small>
+                <span class="dp" id="resDP">0</span>
+            </div>
+            <div class="price-box" style="text-align: right;">
+                <small>SELLING PRICE (SP)</small>
+                <span class="sp" id="resSP">0</span>
+            </div>
+        </div>
+        
+        <div class="profit-badge" id="resProfit">Profit</div>
+    </div>
+
+    <script>
+        // Install Service Worker
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+
+        const DATA_URL = 'data/prices.json';
+        let fullData = [];
+        
+        // Load Data
+        fetch(DATA_URL).then(r => r.json()).then(data => {
+            fullData = data;
+            const brands = [...new Set(data.map(i => i.brand))].sort();
+            brands.forEach(b => {
+                const opt = document.createElement('option');
+                opt.value = b;
+                document.getElementById('brandList').appendChild(opt);
+            });
+        }).catch(() => alert("Waiting for data..."));
+
+        // Logic
+        const brandIn = document.getElementById('brandInput');
+        const catSel = document.getElementById('categoryInput');
+        const modSel = document.getElementById('modelInput');
+        const card = document.getElementById('resultCard');
+
+        brandIn.addEventListener('input', () => {
+            const val = brandIn.value;
+            if (fullData.some(i => i.brand === val)) {
+                const cats = [...new Set(fullData.filter(i => i.brand === val).map(i => i.category))].sort();
+                catSel.innerHTML = '<option value="">-- Select Category --</option>';
+                cats.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c; opt.textContent = c; catSel.appendChild(opt);
+                });
+                catSel.disabled = false; modSel.disabled = true; card.style.display = 'none';
+            }
+        });
+
+        catSel.addEventListener('change', () => {
+            const items = fullData.filter(i => i.brand === brandIn.value && i.category === catSel.value);
+            modSel.innerHTML = '<option value="">-- Select Model --</option>';
+            items.forEach(i => {
+                const opt = document.createElement('option');
+                opt.value = i.id; opt.textContent = `${i.name} (${i.size})`; modSel.appendChild(opt);
+            });
+            modSel.disabled = false;
+        });
+
+        modSel.addEventListener('change', () => {
+            const item = fullData.find(i => i.id == modSel.value);
+            if (item) {
+                const profit = item.sp - item.dp;
+                const margin = Math.round((profit / item.dp) * 100);
+                document.getElementById('resBrand').textContent = item.brand;
+                document.getElementById('resName').textContent = item.name;
+                document.getElementById('resSpecs').textContent = `${item.specs} | ${item.size}`;
+                document.getElementById('resDP').textContent = `₹${item.dp}`;
+                document.getElementById('resSP').textContent = `₹${item.sp}`;
+                document.getElementById('resProfit').textContent = `Profit: ₹${profit} (${margin}%)`;
+                card.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
