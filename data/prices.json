@@ -1,65 +1,28 @@
 [
-  {
-    "id": 1,
-    "brand": "Soulwood (Crystal)",
-    "type": "Louvers",
-    "product": "Charcoal Louvers",
-    "variant": "5 inch x 9 ft",
-    "dp": 800,
-    "sp": 850
-  },
-  {
-    "id": 2,
-    "brand": "Soulwood (Crystal)",
-    "type": "Louvers",
-    "product": "Velvet Series",
-    "variant": "5 inch x 9 ft",
-    "dp": 800,
-    "sp": 850
-  },
-  {
-    "id": 3,
-    "brand": "Soulwood (Crystal)",
-    "type": "Louvers",
-    "product": "Charcoal Louvers XL",
-    "variant": "1 Ft Width",
-    "dp": 1700,
-    "sp": 1800
-  },
-  {
-    "id": 4,
-    "brand": "Soulwood (Crystal)",
-    "type": "Louvers",
-    "product": "WPC L Corner",
-    "variant": "Standard",
-    "dp": 250,
-    "sp": 300
-  },
-  {
-    "id": 5,
-    "brand": "Soulwood (Crystal)",
-    "type": "PU Stone",
-    "product": "PU Stone",
-    "variant": "4 ft x 2 ft",
-    "dp": 1100,
-    "sp": 1200
-  },
-  {
-    "id": 6,
-    "brand": "Soulwood (Crystal)",
-    "type": "WPC",
-    "product": "WPC Exterior Panel",
-    "variant": "Standard",
-    "dp": 2200,
-    "sp": 2400
-  },
-  {
-    "id": 7,
-    "brand": "Soulwood (Crystal)",
-    "type": "WPC",
-    "product": "WPC Interior Louver",
-    "variant": "Standard",
-    "dp": 700,
-    "sp": 800
-  }
+  { "id": 101, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "Charcoal Louvers (5 inch x 9 ft)", "dp": 800, "sp": 850 },
+  { "id": 102, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "Velvet Series (Soulwood)", "dp": 800, "sp": 850 },
+  { "id": 103, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "Charcoal Louvers XL (1Ft)", "dp": 1700, "sp": 1800 },
+  { "id": 104, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "WPC Interior Louver", "dp": 700, "sp": 800 },
+  { "id": 105, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "WPC Exterior Panel", "dp": 2200, "sp": 2400 },
+  { "id": 106, "brand": "Soulwood (Crystal)", "category": "Louvers", "product": "L Corner Ext", "dp": 1050, "sp": 1100 },
+  { "id": 107, "brand": "Soulwood (Crystal)", "category": "PU Stone", "product": "Stone 4x2", "dp": 2200, "sp": 2400 },
+  { "id": 108, "brand": "Soulwood (Crystal)", "category": "Soffit Panel Exterior", "product": "Soulwood (Per Sqft)", "dp": 190, "sp": 200 },
+  { "id": 109, "brand": "Soulwood (Crystal)", "category": "Soffit Panel Exterior", "product": "J Trim", "dp": 680, "sp": 700 },
+  { "id": 110, "brand": "Soulwood (Crystal)", "category": "Soffit Panel Exterior", "product": "H Trim", "dp": 1050, "sp": 1100 },
+  { "id": 111, "brand": "Soulwood (Crystal)", "category": "Soffit Panel Exterior", "product": "Inside & Outside Corner", "dp": 1500, "sp": 1600 },
+  { "id": 112, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "High Gloss [CI-101 to 140]", "dp": 4300, "sp": 4500 },
+  { "id": 113, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Metallic [CI-201 to 216]", "dp": 4500, "sp": 4800 },
+  { "id": 114, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Sparkle [CI-501 to 512]", "dp": 4500, "sp": 4800 },
+  { "id": 115, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Wooden [CI-301 to 311]", "dp": 4600, "sp": 5000 },
+  { "id": 116, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Marble [CI-401 to 415]", "dp": 4600, "sp": 5000 },
+  { "id": 117, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Flexy Ply", "dp": 1350, "sp": 1400 },
+  { "id": 118, "brand": "Soulwood (Crystal)", "category": "Acrylic 1.3mm", "product": "Edge Band (Per Mtr)", "dp": 70, "sp": 75 },
+  { "id": 119, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "1-Series", "dp": 2300, "sp": 2400 },
+  { "id": 120, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "2-Series", "dp": 2300, "sp": 2400 },
+  { "id": 121, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "3-Series", "dp": 2300, "sp": 2400 },
+  { "id": 122, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "4-Series", "dp": 2300, "sp": 2400 },
+  { "id": 123, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "5-Series", "dp": 2300, "sp": 2400 },
+  { "id": 124, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "6, 7 Series", "dp": 2300, "sp": 2400 },
+  { "id": 125, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "8, 9 Series", "dp": 2100, "sp": 2200 },
+  { "id": 126, "brand": "Soulwood (Crystal)", "category": "PVC Mica 1.25mm", "product": "Premium (Text, Finish)", "dp": 2600, "sp": 2800 }
 ]
