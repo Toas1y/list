@@ -1,5 +1,10 @@
-const CACHE_NAME = "pricelist-pro-v3";
-const ASSETS = ["./", "./index.html", "./manifest.json", "./data/prices.json"];
+const CACHE_NAME = "pricelist-pro-v4";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./data/prices.json"
+];
 
 self.addEventListener("install", (e) => {
   self.skipWaiting();
