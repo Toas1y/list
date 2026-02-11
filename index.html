@@ -6,35 +6,36 @@
     <title>Price List Pro</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        :root { --bg: #000000; --card: #111111; --text: #ffffff; --blue: #2563eb; --green: #4ade80; --border: #333; }
+        :root { --bg: #050505; --card: #151515; --text: #ffffff; --accent: #2563eb; --green: #22c55e; --border: #333; }
         body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         
-        header { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h1 { margin: 0; font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; }
-        .nav-btn { text-decoration: none; font-size: 1.2rem; background: #222; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid var(--blue); }
+        header { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        h1 { margin: 0; font-size: 1.5rem; font-weight: 800; background: linear-gradient(90deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-btn { text-decoration: none; font-size: 1.2rem; background: #222; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; border: 1px solid var(--border); }
 
-        .controls { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 12px; }
-        .input-group { display: flex; flex-direction: column; }
-        label { font-size: 0.75rem; color: #888; margin-bottom: 4px; margin-left: 4px; text-transform: uppercase; font-weight: bold; }
+        .controls { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 15px; }
+        .row { display: flex; gap: 10px; }
+        .col { flex: 1; display: flex; flex-direction: column; }
         
-        select { background: var(--card); color: white; border: 1px solid var(--border); padding: 12px; font-size: 16px; border-radius: 8px; width: 100%; outline: none; -webkit-appearance: none; }
-        select:focus { border-color: var(--blue); }
-        select:disabled { opacity: 0.4; border-color: #222; }
+        label { font-size: 0.7rem; color: #888; margin-bottom: 5px; margin-left: 4px; text-transform: uppercase; font-weight: 700; }
+        select { background: var(--card); color: white; border: 1px solid var(--border); padding: 12px; font-size: 15px; border-radius: 8px; width: 100%; outline: none; transition: border 0.2s; }
+        select:focus { border-color: var(--accent); }
+        select:disabled { opacity: 0.3; }
 
-        .result-card { background: #1a1a1a; width: 100%; max-width: 600px; margin-top: 25px; border-radius: 16px; padding: 20px; border: 1px solid var(--border); display: none; box-sizing: border-box; }
+        .result-card { background: #1a1a1a; width: 100%; max-width: 600px; margin-top: 30px; border-radius: 16px; padding: 20px; border: 1px solid var(--border); display: none; }
         
-        .brand-badge { background: var(--blue); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        .product-name { font-size: 1.4rem; margin: 12px 0 5px 0; font-weight: 700; color: white; }
-        .product-details { color: #888; font-size: 0.85rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; line-height: 1.5; }
-        
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .brand-badge { background: var(--accent); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
+        .product-name { font-size: 1.3rem; font-weight: 700; color: white; margin: 10px 0 5px 0; }
+        .specs { color: #888; font-size: 0.85rem; display: flex; gap: 10px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #333; }
+        .spec-item { background: #222; padding: 4px 8px; border-radius: 4px; }
+
         .price-row { display: flex; justify-content: space-between; align-items: flex-end; }
-        .price-box small { display: block; font-size: 0.7rem; color: #666; margin-bottom: 4px; }
-        .sp { font-size: 2rem; font-weight: bold; color: var(--green); }
-        .dp { font-size: 1.2rem; color: #888; font-family: monospace; }
+        .price-block small { display: block; font-size: 0.7rem; color: #666; margin-bottom: 4px; }
+        .sp { font-size: 2.2rem; font-weight: 800; color: var(--green); }
+        .dp { font-size: 1.4rem; color: #aaa; font-family: monospace; }
         
-        .profit { background: rgba(37,99,235,0.15); color: #60a5fa; padding: 8px; border-radius: 6px; text-align: center; margin-top: 15px; font-weight: 600; font-size: 0.9rem; }
-        
-        #status { position: fixed; bottom: 10px; right: 10px; font-size: 10px; color: #444; }
+        .profit-bar { margin-top: 15px; background: rgba(37, 99, 235, 0.1); padding: 10px; border-radius: 8px; text-align: center; color: #60a5fa; font-weight: 600; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -44,167 +45,141 @@
     </header>
 
     <div class="controls">
-        <div class="input-group">
-            <label>Brand</label>
-            <select id="selBrand"><option value="">Loading...</option></select>
+        <div class="row">
+            <div class="col">
+                <label>1. Brand</label>
+                <select id="selBrand"><option value="">Loading...</option></select>
+            </div>
+            <div class="col">
+                <label>2. Type</label>
+                <select id="selType" disabled><option>--</option></select>
+            </div>
         </div>
-
-        <div class="input-group">
-            <label>Type / Category</label>
-            <select id="selType" disabled><option>--</option></select>
-        </div>
-
-        <div class="input-group">
-            <label>Product</label>
+        <div class="col">
+            <label>3. Product</label>
             <select id="selProduct" disabled><option>--</option></select>
         </div>
-
-        <div class="input-group">
-            <label>Series / Model</label>
+        <div class="col">
+            <label>4. Series</label>
             <select id="selSeries" disabled><option>--</option></select>
         </div>
-
-        <div class="input-group">
-            <label>Size</label>
-            <select id="selSize" disabled><option>--</option></select>
-        </div>
-
-        <div class="input-group">
-            <label>Thickness</label>
-            <select id="selThickness" disabled><option>--</option></select>
+        <div class="row">
+            <div class="col">
+                <label>5. Size</label>
+                <select id="selSize" disabled><option>--</option></select>
+            </div>
+            <div class="col">
+                <label>6. Thickness</label>
+                <select id="selThick" disabled><option>--</option></select>
+            </div>
         </div>
     </div>
 
     <div id="resultCard" class="result-card">
-        <div><span class="brand-badge" id="resBrand">BRAND</span></div>
+        <div class="card-header"><span class="brand-badge" id="resBrand">BRAND</span></div>
         <div class="product-name" id="resName">Product Name</div>
-        <div class="product-details" id="resDetails">Details</div>
-        
-        <div class="price-row">
-            <div class="price-box">
-                <small>COST (DP)</small>
-                <span class="dp" id="resDP">0</span>
-            </div>
-            <div class="price-box" style="text-align: right;">
-                <small>SELL (SP)</small>
-                <span class="sp" id="resSP">0</span>
-            </div>
+        <div class="specs">
+            <span class="spec-item" id="resSize">Size</span>
+            <span class="spec-item" id="resThick">Thickness</span>
         </div>
-        
-        <div class="profit" id="resProfit">Profit</div>
+        <div class="price-row">
+            <div class="price-block"><small>COST (DP)</small><span class="dp" id="resDP">0</span></div>
+            <div class="price-block" style="text-align: right;"><small>SELL (SP)</small><span class="sp" id="resSP">0</span></div>
+        </div>
+        <div class="profit-bar" id="resProfit">Profit: 0</div>
     </div>
-    
-    <div id="status">...</div>
 
     <script>
         if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
         let fullData = [];
-        const sels = {
+        const els = {
             brand: document.getElementById('selBrand'),
             type: document.getElementById('selType'),
             product: document.getElementById('selProduct'),
             series: document.getElementById('selSeries'),
             size: document.getElementById('selSize'),
-            thickness: document.getElementById('selThickness')
+            thick: document.getElementById('selThick')
         };
         const card = document.getElementById('resultCard');
 
-        // Fetch Data
         fetch('data/prices.json').then(r => r.json()).then(data => {
             fullData = data;
-            document.getElementById('status').innerText = "v2.0 Loaded";
-            populate(sels.brand, [...new Set(data.map(i => i.brand))].sort());
+            populate(els.brand, [...new Set(data.map(i => i.brand))].sort());
         });
 
-        function populate(el, items, placeholder = "-- Select --") {
-            el.innerHTML = `<option value="">${placeholder}</option>`;
-            // Filter out empty/null values from dropdowns
-            items.filter(i => i).forEach(i => {
-                const opt = document.createElement('option');
-                opt.value = i;
-                opt.innerText = i;
-                el.appendChild(opt);
+        function populate(el, items) {
+            el.innerHTML = '<option value="">-- Select --</option>';
+            items.filter(x => x).forEach(i => {
+                let opt = document.createElement('option');
+                opt.value = i; opt.innerText = i; el.appendChild(opt);
             });
             el.disabled = false;
         }
 
-        function resetBelow(level) {
-            const order = ['brand', 'type', 'product', 'series', 'size', 'thickness'];
-            const idx = order.indexOf(level);
-            for (let i = idx + 1; i < order.length; i++) {
-                sels[order[i]].innerHTML = '<option>--</option>';
-                sels[order[i]].disabled = true;
+        function resetFrom(key) {
+            const keys = ['brand', 'type', 'product', 'series', 'size', 'thick'];
+            let start = keys.indexOf(key) + 1;
+            for (let i = start; i < keys.length; i++) {
+                els[keys[i]].innerHTML = '<option>--</option>';
+                els[keys[i]].disabled = true;
             }
             card.style.display = 'none';
         }
 
-        // --- Event Listeners --- //
-
-        // 1. Brand -> Type
-        sels.brand.addEventListener('change', () => {
-            resetBelow('brand');
-            const val = sels.brand.value;
-            if (!val) return;
-            const sub = fullData.filter(i => i.brand === val);
-            populate(sels.type, [...new Set(sub.map(i => i.type))]);
+        els.brand.addEventListener('change', () => {
+            resetFrom('brand');
+            if(!els.brand.value) return;
+            const sub = fullData.filter(i => i.brand === els.brand.value);
+            populate(els.type, [...new Set(sub.map(i => i.type))]);
         });
 
-        // 2. Type -> Product
-        sels.type.addEventListener('change', () => {
-            resetBelow('type');
-            const val = sels.type.value;
-            if (!val) return;
-            const sub = fullData.filter(i => i.brand === sels.brand.value && i.type === val);
-            populate(sels.product, [...new Set(sub.map(i => i.product))]);
+        els.type.addEventListener('change', () => {
+            resetFrom('type');
+            if(!els.type.value) return;
+            const sub = fullData.filter(i => i.brand === els.brand.value && i.type === els.type.value);
+            populate(els.product, [...new Set(sub.map(i => i.product))]);
         });
 
-        // 3. Product -> Series
-        sels.product.addEventListener('change', () => {
-            resetBelow('product');
-            const val = sels.product.value;
-            if (!val) return;
-            const sub = fullData.filter(i => i.brand === sels.brand.value && i.type === sels.type.value && i.product === val);
-            populate(sels.series, [...new Set(sub.map(i => i.series))]);
+        els.product.addEventListener('change', () => {
+            resetFrom('product');
+            if(!els.product.value) return;
+            const sub = fullData.filter(i => i.brand === els.brand.value && i.type === els.type.value && i.product === els.product.value);
+            populate(els.series, [...new Set(sub.map(i => i.series))]);
         });
 
-        // 4. Series -> Size
-        sels.series.addEventListener('change', () => {
-            resetBelow('series');
-            const val = sels.series.value;
-            if (!val) return;
-            const sub = fullData.filter(i => i.brand === sels.brand.value && i.type === sels.type.value && i.product === sels.product.value && i.series === val);
-            populate(sels.size, [...new Set(sub.map(i => i.size))]);
+        els.series.addEventListener('change', () => {
+            resetFrom('series');
+            if(!els.series.value) return;
+            const sub = fullData.filter(i => i.brand === els.brand.value && i.type === els.type.value && i.product === els.product.value && i.series === els.series.value);
+            populate(els.size, [...new Set(sub.map(i => i.size))]);
         });
 
-        // 5. Size -> Thickness
-        sels.size.addEventListener('change', () => {
-            resetBelow('size');
-            const val = sels.size.value;
-            if (!val) return;
-            const sub = fullData.filter(i => i.brand === sels.brand.value && i.type === sels.type.value && i.product === sels.product.value && i.series === sels.series.value && i.size === val);
-            populate(sels.thickness, [...new Set(sub.map(i => i.thickness))]);
+        els.size.addEventListener('change', () => {
+            resetFrom('size');
+            if(!els.size.value) return;
+            const sub = fullData.filter(i => i.brand === els.brand.value && i.type === els.type.value && i.product === els.product.value && i.series === els.series.value && i.size === els.size.value);
+            populate(els.thick, [...new Set(sub.map(i => i.thickness))]);
         });
 
-        // 6. Thickness -> RESULT
-        sels.thickness.addEventListener('change', () => {
+        els.thick.addEventListener('change', () => {
             const item = fullData.find(i => 
-                i.brand === sels.brand.value && 
-                i.type === sels.type.value && 
-                i.product === sels.product.value && 
-                i.series === sels.series.value && 
-                i.size === sels.size.value && 
-                i.thickness === sels.thickness.value
+                i.brand === els.brand.value && 
+                i.type === els.type.value && 
+                i.product === els.product.value && 
+                i.series === els.series.value && 
+                i.size === els.size.value && 
+                i.thickness === els.thick.value
             );
 
             if (item) {
-                const profit = item.sp - item.dp;
                 document.getElementById('resBrand').innerText = item.brand;
                 document.getElementById('resName').innerText = `${item.product} ${item.series}`;
-                document.getElementById('resDetails').innerText = `${item.type} | ${item.size} | ${item.thickness}`;
+                document.getElementById('resSize').innerText = item.size;
+                document.getElementById('resThick').innerText = item.thickness;
                 document.getElementById('resDP').innerText = `₹${item.dp}`;
                 document.getElementById('resSP').innerText = `₹${item.sp}`;
-                document.getElementById('resProfit').innerText = `Profit: ₹${profit}`;
+                document.getElementById('resProfit').innerText = `Profit: ₹${item.sp - item.dp}`;
                 card.style.display = 'block';
             }
         });
